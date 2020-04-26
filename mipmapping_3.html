@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="canvases">
+        <div id="first-canvas"></div>
+        <div id="second-canvas"></div>
+        <div id="third-canvas"></div>
+    </div>
+    
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/102/three.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.5/dat.gui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/102/three.js"></script>
+    <script src="./three.js-master/build/three.js"></script>
+    <script src="./three.js-master/examples/js/postprocessing/EffectComposer.js"></script>
+    <script src="./three.js-master/examples/js/postprocessing/SSAARenderPass.js"></script>
+    <script src="./three.js-master/examples/js/postprocessing/ShaderPass.js"></script>
+    <script src="./three.js-master/examples/js/shaders/CopyShader.js"></script>
+
+    <script src="js/scene.js"></script>
+    <script src="js/mipmapping_3.js"></script>
+    <script src="js/render-mipmapped_3.js"></script>
+    <script src="js/select.js"></script>
+
+    <!-- <script type="text/javascript">
+        
+        function changeSample() {
+            var newValue = document.getElementById('sampleLevelSlider').value;
+            document.getElementById('sampleLevelDisplay').innerHTML = newValue;
+            composer.passes[0].sampleLevel = newValue;
+            render();
+        }
+    </script>
+
+    <input type="range" id="sampleLevelSlider" min="1" max="20" step="1" value="2" onchange="changeSample()"> -->
+
+    <!-- <div class="valueDisplay mipmapLevelDisplay">Mipmap Level: <span id="mipmapLevel"></span></div> -->
+    
+        <div class="mipmap-levels">
+            <div class="mipmap-level white">0</div>
+            <div class="mipmap-level red">1</div>
+            <div class="mipmap-level blue">2</div>
+            <div class="mipmap-level green">3</div>
+            <div class="mipmap-level pink">4</div>
+            <div class="mipmap-level yellow">5</div>
+            <div class="mipmap-level orange">6</div>
+            <div class="mipmap-level violet">7</div>
+            <div class="mipmap-level maroon">8</div>
+            <div class="mipmap-level grey">9</div>
+        </div>
+
+        <div class="pickers">
+            <div class="picker first-picker">
+                <div class="subject-picker">
+                    <select id="first-subject-picker" onchange="changeSubject(0)">
+                        <option value="reference">Reference</option>
+                        <option value="none" selected>None</option>
+                        <option value="texture1">Texture 1</option>
+                        <option value="texture2">Texture 2</option>
+                        <option value="texture3">Texture 3</option>
+                        <option value="texture4">Texture 4</option>
+                        <option value="texture5">Texture 5</option>
+                    </select>
+                </div>
+                <div class="method-picker" onchange="changeMethod(0)">
+                    <select id="first-method-picker">
+                        <!-- <option value="lanczos_first">Lanczos First</option> -->
+                    </select>
+                </div>
+                <div class="geometry-picker">
+                    <select id="first-geometry-picker" onchange="changeGeometry(0)">
+                        <option value="plane">Plane</option>
+                        <option value="sphere">Sphere</option>
+                        <option value="box" selected>Box</option>
+                        <option value="cylinder">Cylinder</option>
+                        <option value="torus">Torus</option>
+                        <option value="torus-knot">Torus Knot</option>
+                    </select>
+                </div>
+            </div>
+            <div class="picker second-picker">
+                <div class="subject-picker">
+                    <select id="second-subject-picker" onchange="changeSubject(1)">
+                        <option value="reference">Reference</option>
+                        <option value="none">None</option>
+                        <option value="texture1">Texture 1</option>
+                        <option value="texture2">Texture 2</option>
+                        <option value="texture3">Texture 3</option>
+                        <option value="texture4">Texture 4</option>
+                        <option value="texture5">Texture 5</option>
+                    </select>
+                </div>
+                <div class="method-picker" onchange="changeMethod(1)">
+                    <select id="second-method-picker" value="">
+                        <!-- <option value="box_average">box_average</option> -->
+                    </select>
+                </div>
+                <div class="geometry-picker">
+                    <select id="second-geometry-picker" onchange="changeGeometry(1)">
+                        <option value="plane">Plane</option>
+                        <option value="sphere">Sphere</option>
+                        <option value="box" selected>Box</option>
+                        <option value="cylinder">Cylinder</option>
+                        <option value="torus">Torus</option>
+                        <option value="torus-knot">Torus Knot</option>
+                    </select>
+                </div>
+            </div>
+            <div class="picker third-picker">
+                <div class="subject-picker">
+                    <select id="third-subject-picker" onchange="changeSubject(2)">
+                        <option value="reference">Reference</option>
+                        <option value="none">None</option>
+                        <option value="texture1">Texture 1</option>
+                        <option value="texture2">Texture 2</option>
+                        <option value="texture3">Texture 3</option>
+                        <option value="texture4">Texture 4</option>
+                        <option value="texture5">Texture 5</option>
+                    </select>
+                </div>
+                <div class="method-picker" onchange="changeMethod(2)">
+                    <select id="third-method-picker" value="">
+                        <!-- <option value="box_average">box_average</option> -->
+                    </select>
+                </div>
+                <div class="geometry-picker">
+                    <select id="third-geometry-picker" onchange="changeGeometry(2)">
+                        <option value="plane">Plane</option>
+                        <option value="sphere">Sphere</option>
+                        <option value="box" selected>Box</option>
+                        <option value="cylinder">Cylinder</option>
+                        <option value="torus">Torus</option>
+                        <option value="torus-knot">Torus Knot</option>
+                    </select>
+                </div>
+            </div>
+                
+        </div>
+    
+        <script src="js/load_select_3.js"></script>
+
+</body>
+</html>
