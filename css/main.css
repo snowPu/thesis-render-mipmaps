@@ -1,0 +1,123 @@
+body {
+    margin: 0;
+    height: 100vh;
+}
+
+canvas {
+    display: block;
+}
+
+.valueDisplay {
+    position: absolute;
+	top: 10px;
+	width: 100%;
+	z-index: 100;
+    display:block;
+    color: white;
+    font-size: 40pt;
+}
+
+
+.mipmap-levels {
+    position: absolute;
+    top: 10px;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    width: 100%;
+}
+
+.mipmap-levels .mipmap-level {
+    font-size: 40px;
+    color: black;
+    width: 50px;
+    height: 50px;
+    margin: 0;
+    text-align: center;
+
+}
+
+.pickers {
+    position: absolute;
+    top: 10px;
+    display: flex;
+    flex: 1;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.picker {
+    display: flex;
+    width: 100%;
+    flex: 1;
+    /* justify-content: center; */
+}
+
+.picker.left-picker {
+    justify-content: flex-start;
+}
+.picker.right-picker {
+    justify-content: flex-end;
+}
+
+.picker select {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.mipmap-level.white {
+    background-color: white;
+}
+.mipmap-level.red {
+    background-color: red;
+}
+.mipmap-level.blue {
+    background-color: rgb(7, 128, 248);
+}
+.mipmap-level.green {
+    background-color: rgb(38, 217, 97);;
+}
+.mipmap-level.yellow {
+    background-color: rgb(255, 242, 0);;
+}
+.mipmap-level.pink {
+    background-color: rgb(238, 17, 172);;
+}
+.mipmap-level.orange {
+    background-color: rgb(250, 121, 5);;
+}
+.mipmap-level.violet {
+    background-color: rgb(108, 52, 203);;
+}
+.mipmap-level.maroon {
+    background-color: rgb(125, 30, 32);;
+}
+.mipmap-level.grey {
+    background-color: rgb(182, 182, 182);;
+}
+
+.mipmapLevelDisplay {
+    
+}
+
+.sampleLevelDisplay {
+    display: none;
+	text-align: center;
+}
+
+.canvases {
+    display: flex;
+}
+
+#left-canvas canvas {
+    display: flex;
+}
+
+#right-canvas {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.method-picker select {
+    max-width: 100px;
+}
