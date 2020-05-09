@@ -9,8 +9,9 @@
 </head>
 <body>
     <div class="canvases">
-        <div id="left-canvas"></div>
-        <div id="right-canvas"></div>
+        <div id="first-canvas"></div>
+        <div id="second-canvas"></div>
+        <div id="third-canvas"></div>
     </div>
     
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/102/three.js"></script> -->
@@ -28,127 +29,53 @@
     <script src="js/render-mipmapped.js"></script>
     <script src="js/select.js"></script>
 
-    <!-- <script type="text/javascript">
-        
-        function changeSample() {
-            var newValue = document.getElementById('sampleLevelSlider').value;
-            document.getElementById('sampleLevelDisplay').innerHTML = newValue;
-            composer.passes[0].sampleLevel = newValue;
-            render();
-        }
-    </script>
-
-    <input type="range" id="sampleLevelSlider" min="1" max="20" step="1" value="2" onchange="changeSample()"> -->
-
-    <!-- <div class="valueDisplay mipmapLevelDisplay">Mipmap Level: <span id="mipmapLevel"></span></div> -->
-    
-        <div class="mipmap-levels">
-            <div class="mipmap-level white">0</div>
-            <div class="mipmap-level red">1</div>
-            <div class="mipmap-level blue">2</div>
-            <div class="mipmap-level green">3</div>
-            <div class="mipmap-level pink">4</div>
-            <div class="mipmap-level yellow">5</div>
-            <div class="mipmap-level orange">6</div>
-            <div class="mipmap-level violet">7</div>
-            <div class="mipmap-level maroon">8</div>
-            <div class="mipmap-level grey">9</div>
-        </div>
 
         <div class="pickers">
-            <div class="picker left-picker">
+            <div class="picker first-picker">
                 <div class="subject-picker">
-                    <select id="left-subject-picker" onchange="changeLeftSubject()">
+                    <select id="first-subject-picker" onchange="changeSubject()">
                         <option value="reference">Reference</option>
-                        <option value="none" selected>None</option>
-                        <option value="grass">Grass</option>
-                        <option value="lena">Lena</option>
-                        <option value="chessboard">Chessboard</option>
-                        <option value="winterlandscape">Winter Landscape</option>
-                    </select>
-                </div>
-                <div class="filter-picker" onchange="changeLeftLowPassFilter()">
-                    <select id="left-filter-picker">
-                        <option value="lanczos">Lanczos</option>
-                        <option value="box">Box</option>
-                        <option value="sinc">Sinc</option>
-                        <option value="gaussian_3">Gaussian_3</option>
-                        <option value="gaussian_5">Gaussian_5</option>
-                    </select>
-                </div>
-                <div class="subsample-picker" onchange="changeLeftSubsamplingMethod()">
-                    <select id="left-subsample-picker">
-                        <option value="first">First</option>
-                        <option value="average">Average</option>
-                        <option value="min">Min</option>
-                        <option value="max">Max</option>
-                        <option value="second">Second</option>
-                        <option value="third">Third</option>
-                        <option value="fourth">Fourth</option>
-                        <option value="median">Median</option>
-                        <option value="random">Random</option>
-                        <option value="extreme">Extreme</option>
+                        <option value="none">None</option>
+                        <option value="texture1">Texture 1</option>
+                        <option value="texture2">Texture 2</option>
+                        <option value="texture3" selected>Texture 3</option>
+                        <option value="texture4">Texture 4</option>
+                        <option value="texture5">Texture 5</option>
                     </select>
                 </div>
                 <div class="geometry-picker">
-                    <select id="left-geometry-picker" onchange="changeLeftGeometry()">
-                        <option value="plane">Plane</option>
-                        <option value="sphere" selected>Sphere</option>
+                    <select id="first-geometry-picker" onchange="changeGeometry()">
+                        <option value="plane" selected>Plane</option>
+                        <option value="sphere">Sphere</option>
                         <option value="box">Box</option>
                         <option value="cylinder">Cylinder</option>
                         <option value="torus">Torus</option>
                         <option value="torus-knot">Torus Knot</option>
+                    </select>
+                </div>
+                <div class="method-picker" onchange="changeMethod(0)">
+                    <select id="first-method-picker">
+                        <!-- <option value="lanczos_first">Lanczos First</option> -->
                     </select>
                 </div>
             </div>
-            <div class="picker right-picker">
-                <div class="subject-picker">
-                    <select id="right-subject-picker" onchange="changeRightSubject()">
-                        <option value="reference">Reference</option>
-                        <option value="none">None</option>
-                        <option value="grass" selected>Grass</option>
-                        <option value="lena">Lena</option>
-                        <option value="chessboard">Chessboard</option>
-                        <option value="winterlandscape">Winter Landscape</option>
+            <div class="picker second-picker">
+                <div class="method-picker" onchange="changeMethod(1)">
+                    <select id="second-method-picker" value="">
+                        <!-- <option value="box_average">box_average</option> -->
                     </select>
                 </div>
-                <div class="filter-picker" onchange="changeRightLowPassFilter()">
-                    <select id="right-filter-picker" value="">
-                        <option value="lanczos">Lanczos</option>
-                        <option value="box" selected>Box</option>
-                        <option value="sinc">Sinc</option>
-                        <option value="gaussian_3">Gaussian_3</option>
-                        <option value="gaussian_5">Gaussian_5</option>
-                    </select>
-                </div>
-                <div class="subsample-picker" onchange="changeRightSubsamplingMethod()">
-                    <select id="right-subsample-picker">
-                        <option value="first">First</option>
-                        <option value="average">Average</option>
-                        <option value="min">Min</option>
-                        <option value="max">Max</option>
-                        <option value="second">Second</option>
-                        <option value="third">Third</option>
-                        <option value="fourth">Fourth</option>
-                        <option value="median">Median</option>
-                        <option value="random">Random</option>
-                        <option value="extreme">Extreme</option>
-                    </select>
-                </div>
-                <div class="geometry-picker">
-                    <select id="right-geometry-picker" onchange="changeRightGeometry()">
-                        <option value="plane">Plane</option>
-                        <option value="sphere" selected>Sphere</option>
-                        <option value="box">Box</option>
-                        <option value="cylinder">Cylinder</option>
-                        <option value="torus">Torus</option>
-                        <option value="torus-knot">Torus Knot</option>
+            </div>
+            <div class="picker third-picker">
+                <div class="method-picker" onchange="changeMethod(2)">
+                    <select id="third-method-picker" value="">
                     </select>
                 </div>
             </div>
                 
         </div>
     
+        <script src="js/load_select.js"></script>
 
 </body>
 </html>
