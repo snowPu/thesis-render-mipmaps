@@ -50,7 +50,7 @@ canvas {
     display: flex;
     width: 100%;
     flex: 1;
-    /* justify-content: center; */
+    justify-content: center;
 }
 
 .picker.left-picker {
@@ -107,16 +107,23 @@ canvas {
 
 .canvases {
     display: flex;
+    justify-content: space-around;
+    flex: 1;
 }
 
-#left-canvas canvas {
+#first-canvas {
     display: flex;
 }
 
-#right-canvas {
+#second-canvas {
     display: flex;
-    justify-content: flex-end;
 }
+
+#third-canvas {
+    display: flex;
+}
+
+
 
 .method-picker select {
     max-width: 100px;

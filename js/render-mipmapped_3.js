@@ -5,11 +5,11 @@
 
 var lts = 'none';
 var rts = 'texture1';
-ts = ['texture1', 'texture1', 'texture1'];
+ts = ['texture4', 'texture4', 'texture4'];
 
 var lmet = 'lanczos_first';
 var rmet = 'box_average';
-met = ['lanczos_first', 'box_average', 'box_average'];
+met = ['box_first', 'dpid', 'weights_perceptual_ssim_nadam_500_0.0002_0.9_0.999_1587746299.670421_00000390'];
 
 var lrot = null;
 var rrot = null;
@@ -26,6 +26,7 @@ var updatedSceneComp;
 subjectPickers = ['first-subject-picker', 'second-subject-picker', 'third-subject-picker'];
 methodPickers = ['first-method-picker', 'second-method-picker', 'third-method-picker'];
 geometryPickers = ['first-geometry-picker', 'second-geometry-picker', 'third-geometry-picker'];
+meshes = ['first', 'second', 'third'];
 
 
 function performUpdateScene() {
@@ -40,20 +41,36 @@ function performUpdateScene() {
     })
 }
 
+function performUpdateMesh(i) {
+    updateMesh(meshes[i], ts[i], met[i], geo[i]).then(m => {
+        updatedSceneComp[meshes[i]] = m;
+        applyMeshRotations();
+    })
+}
+
 performUpdateScene();
 
 
-function changeSubject(i) {
-    ts[i] = document.getElementById(subjectPickers[i]).value;
+function changeSubject() {
+    ts[0] = document.getElementById(subjectPickers[0]).value;
+    ts[1] = document.getElementById(subjectPickers[0]).value;
+    ts[2] = document.getElementById(subjectPickers[0]).value;
+    // performUpdateMesh(0);
+    // performUpdateMesh(1);
+    // performUpdateMesh(2);
     performUpdateScene();
 }
 
 function changeMethod(i) {
     met[i] = document.getElementById(methodPickers[i]).value;
-    performUpdateScene();
+    performUpdateMesh(i);
 }
-function changeGeometry(i){
-    geo[i] = document.getElementById(geometryPickers[i]).value;
+function changeGeometry(){
+    geo[0] = document.getElementById(geometryPickers[0]).value;
+    geo[1] = document.getElementById(geometryPickers[0]).value;
+    geo[2] = document.getElementById(geometryPickers[0]).value;
+    // performUpdateMesh(i);
+    
     performUpdateScene();
 }
 
@@ -67,7 +84,9 @@ var render = function() {
     // mesh.rotation.y += 0.01;
     // console.log(mipmapped_camera.position);
     // console.log(scene);
-    mipmapped_renderer.render(scene, mipmapped_camera);
+    mipmapped_renderer.render(scene1, mipmapped_camera);
+    mipmapped_renderer2.render(scene2, mipmapped_camera);
+    mipmapped_renderer3.render(scene3, mipmapped_camera);
     // console.log(scene)
     // console.log(mipmapped_renderer)
     // document.getElementById('mipmapLevel').innerHTML = mipmapped_renderer.getActiveMipmapLevel()
@@ -128,19 +147,22 @@ function onKeyDown(event) {
     
     var light = new THREE.DirectionalLight( 0xffffff );
     light.position.set( 1, 1, 1 ).normalize();
-    scene.add(light);
+    scene1.add(light);
+    scene2.add(light);
+    scene3.add(light);
     render();
 }
 
 
 function applyMeshRotations() {
-    updatedSceneComp.fmesh.rotation.x = xrot;
-    updatedSceneComp.smesh.rotation.x = xrot;
-    updatedSceneComp.tmesh.rotation.x = xrot;
+    console.log(updatedSceneComp);
+    updatedSceneComp.first.rotation.x = xrot;
+    updatedSceneComp.second.rotation.x = xrot;
+    updatedSceneComp.third.rotation.x = xrot;
 
-    updatedSceneComp.fmesh.rotation.y = yrot;
-    updatedSceneComp.smesh.rotation.y = yrot;
-    updatedSceneComp.tmesh.rotation.y = yrot;
+    updatedSceneComp.first.rotation.y = yrot;
+    updatedSceneComp.second.rotation.y = yrot;
+    updatedSceneComp.third.rotation.y = yrot;
 }
 
 // console.log(scene);
@@ -148,7 +170,9 @@ function applyMeshRotations() {
 
 var light = new THREE.DirectionalLight( 0xffffff );
 light.position.set( 1, 1, 1 ).normalize();
-scene.add(light);
+scene1.add(light);
+scene2.add(light);
+scene3.add(light);
 render();
 
 // this.tl = new TimelineMax().delay(.3);

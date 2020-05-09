@@ -43,7 +43,7 @@
 
     <!-- <div class="valueDisplay mipmapLevelDisplay">Mipmap Level: <span id="mipmapLevel"></span></div> -->
     
-        <div class="mipmap-levels">
+        <!-- <div class="mipmap-levels">
             <div class="mipmap-level white">0</div>
             <div class="mipmap-level red">1</div>
             <div class="mipmap-level blue">2</div>
@@ -54,19 +54,29 @@
             <div class="mipmap-level violet">7</div>
             <div class="mipmap-level maroon">8</div>
             <div class="mipmap-level grey">9</div>
-        </div>
+        </div> -->
 
         <div class="pickers">
             <div class="picker first-picker">
                 <div class="subject-picker">
-                    <select id="first-subject-picker" onchange="changeSubject(0)">
+                    <select id="first-subject-picker" onchange="changeSubject()">
                         <option value="reference">Reference</option>
-                        <option value="none" selected>None</option>
+                        <option value="none">None</option>
                         <option value="texture1">Texture 1</option>
                         <option value="texture2">Texture 2</option>
-                        <option value="texture3">Texture 3</option>
+                        <option value="texture3" selected>Texture 3</option>
                         <option value="texture4">Texture 4</option>
                         <option value="texture5">Texture 5</option>
+                    </select>
+                </div>
+                <div class="geometry-picker">
+                    <select id="first-geometry-picker" onchange="changeGeometry()">
+                        <option value="plane" selected>Plane</option>
+                        <option value="sphere">Sphere</option>
+                        <option value="box">Box</option>
+                        <option value="cylinder">Cylinder</option>
+                        <option value="torus">Torus</option>
+                        <option value="torus-knot">Torus Knot</option>
                     </select>
                 </div>
                 <div class="method-picker" onchange="changeMethod(0)">
@@ -74,72 +84,62 @@
                         <!-- <option value="lanczos_first">Lanczos First</option> -->
                     </select>
                 </div>
-                <div class="geometry-picker">
-                    <select id="first-geometry-picker" onchange="changeGeometry(0)">
-                        <option value="plane">Plane</option>
-                        <option value="sphere">Sphere</option>
-                        <option value="box" selected>Box</option>
-                        <option value="cylinder">Cylinder</option>
-                        <option value="torus">Torus</option>
-                        <option value="torus-knot">Torus Knot</option>
-                    </select>
-                </div>
             </div>
             <div class="picker second-picker">
-                <div class="subject-picker">
+                <!-- <div class="subject-picker">
                     <select id="second-subject-picker" onchange="changeSubject(1)">
                         <option value="reference">Reference</option>
                         <option value="none">None</option>
                         <option value="texture1">Texture 1</option>
                         <option value="texture2">Texture 2</option>
-                        <option value="texture3">Texture 3</option>
+                        <option value="texture3" selected>Texture 3</option>
                         <option value="texture4">Texture 4</option>
                         <option value="texture5">Texture 5</option>
                     </select>
-                </div>
+                </div> -->
                 <div class="method-picker" onchange="changeMethod(1)">
                     <select id="second-method-picker" value="">
                         <!-- <option value="box_average">box_average</option> -->
                     </select>
                 </div>
-                <div class="geometry-picker">
+                <!-- <div class="geometry-picker">
                     <select id="second-geometry-picker" onchange="changeGeometry(1)">
-                        <option value="plane">Plane</option>
+                        <option value="plane" selected>Plane</option>
                         <option value="sphere">Sphere</option>
-                        <option value="box" selected>Box</option>
+                        <option value="box">Box</option>
                         <option value="cylinder">Cylinder</option>
                         <option value="torus">Torus</option>
                         <option value="torus-knot">Torus Knot</option>
                     </select>
-                </div>
+                </div> -->
             </div>
             <div class="picker third-picker">
-                <div class="subject-picker">
+                <!-- <div class="subject-picker">
                     <select id="third-subject-picker" onchange="changeSubject(2)">
                         <option value="reference">Reference</option>
                         <option value="none">None</option>
                         <option value="texture1">Texture 1</option>
                         <option value="texture2">Texture 2</option>
-                        <option value="texture3">Texture 3</option>
+                        <option value="texture3" selected>Texture 3</option>
                         <option value="texture4">Texture 4</option>
                         <option value="texture5">Texture 5</option>
                     </select>
-                </div>
+                </div> -->
                 <div class="method-picker" onchange="changeMethod(2)">
                     <select id="third-method-picker" value="">
                         <!-- <option value="box_average">box_average</option> -->
                     </select>
                 </div>
-                <div class="geometry-picker">
+                <!-- <div class="geometry-picker">
                     <select id="third-geometry-picker" onchange="changeGeometry(2)">
-                        <option value="plane">Plane</option>
+                        <option value="plane" selected>Plane</option>
                         <option value="sphere">Sphere</option>
-                        <option value="box" selected>Box</option>
+                        <option value="box">Box</option>
                         <option value="cylinder">Cylinder</option>
                         <option value="torus">Torus</option>
                         <option value="torus-knot">Torus Knot</option>
                     </select>
-                </div>
+                </div> -->
             </div>
                 
         </div>
