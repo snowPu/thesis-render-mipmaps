@@ -48,51 +48,51 @@ var box2 = new THREE.PlaneGeometry(10, 10, 8 );
 // var material = new THREE.MeshLambertMaterial({color: 0xFFCC00});
 
 
-var chessboard_images = [
-    'textures/chessboard/white/chessboard_512.png',
-    'textures/chessboard/red/chessboard_256.png',
-    'textures/chessboard/blue/chessboard_128.png',
-    'textures/chessboard/green/chessboard_64.png',
-    'textures/chessboard/pink/chessboard_32.png',
-    'textures/chessboard/yellow/chessboard_16.png',
-    'textures/chessboard/orange/chessboard_8.png',
-    'textures/chessboard/violet/chessboard_4.png',
-    'textures/chessboard/maroon/chessboard_2.png',
-    'textures/chessboard/grey/chessboard_1.png'
-];
+// var chessboard_images = [
+//     'textures/chessboard/white/chessboard_512.png',
+//     'textures/chessboard/red/chessboard_256.png',
+//     'textures/chessboard/blue/chessboard_128.png',
+//     'textures/chessboard/green/chessboard_64.png',
+//     'textures/chessboard/pink/chessboard_32.png',
+//     'textures/chessboard/yellow/chessboard_16.png',
+//     'textures/chessboard/orange/chessboard_8.png',
+//     'textures/chessboard/violet/chessboard_4.png',
+//     'textures/chessboard/maroon/chessboard_2.png',
+//     'textures/chessboard/grey/chessboard_1.png'
+// ];
 
-var chessboard_images_normal = [
-    'textures/chessboard/white/chessboard_512.png',
-    'textures/chessboard/white/chessboard_256.png',
-    'textures/chessboard/white/chessboard_128.png',
-    'textures/chessboard/white/chessboard_64.png',
-    'textures/chessboard/white/chessboard_32.png',
-    'textures/chessboard/white/chessboard_16.png',
-    'textures/chessboard/white/chessboard_8.png',
-    'textures/chessboard/white/chessboard_4.png',
-    'textures/chessboard/white/chessboard_2.png',
-    'textures/chessboard/white/chessboard_1.png'
-];
+// var chessboard_images_normal = [
+//     'textures/chessboard/white/chessboard_512.png',
+//     'textures/chessboard/white/chessboard_256.png',
+//     'textures/chessboard/white/chessboard_128.png',
+//     'textures/chessboard/white/chessboard_64.png',
+//     'textures/chessboard/white/chessboard_32.png',
+//     'textures/chessboard/white/chessboard_16.png',
+//     'textures/chessboard/white/chessboard_8.png',
+//     'textures/chessboard/white/chessboard_4.png',
+//     'textures/chessboard/white/chessboard_2.png',
+//     'textures/chessboard/white/chessboard_1.png'
+// ];
 
-var chessboard = [];
-var chessboard_normal = [];
+// var chessboard = [];
+// var chessboard_normal = [];
 
 
 var lena_box = [];
 
-chessboard_images.forEach(chessboard_img => {
-    var im = new Image();
-    // console.log(chessboard_img);
-    im.src = chessboard_img;
-    chessboard.push(im);
-});
+// chessboard_images.forEach(chessboard_img => {
+//     var im = new Image();
+//     // console.log(chessboard_img);
+//     im.src = chessboard_img;
+//     chessboard.push(im);
+// });
 
-chessboard_images_normal.forEach(chessboard_img => {
-    var im = new Image();
-    console.log(chessboard_img);
-    im.src = chessboard_img;
-    chessboard_normal.push(im);
-});
+// chessboard_images_normal.forEach(chessboard_img => {
+//     var im = new Image();
+//     console.log(chessboard_img);
+//     im.src = chessboard_img;
+//     chessboard_normal.push(im);
+// });
 
 var textures = [];
 
@@ -130,7 +130,7 @@ const textureSubjects = {
 }
 
 // const lowPassFilters = ['lanczos', 'sinc', 'gaussian_3', 'gaussian_5'];
-const lowPassFilters = ['box', 'gaussian_3', 'gaussian_5'];
+const lowPassFilters = ['box', 'gaussian_3'];
 // const subsamplingMethods = ['max', 'min', 'average', 'first', 'second', 'third', 'fourth', 'median', 'random', 'extreme'];
 const subsamplingMethods = ['first', 'median', 'average'];
 const existing_work_methods = ['dpid', 'perceptual'];
@@ -235,21 +235,22 @@ async function getMaterial(ts, met) {
 
     let mipmapImages = [];
 
-    if (ts === 'reference') {
-        let texture = await new THREE.TextureLoader().load( chessboard_images[0] );
-        texture.wrapS = THREE.RepeatWrapping;
-        texture.wrapT = THREE.RepeatWrapping;
-        texture.offset.set(0, 0);
-        texture.repeat.set(2, 2);
-        // texture.minFilter = THREE.NearestMipmapNearestFilter;
-        texture.minFilter = THREE.NearestFilter;
-        texture.magFilter = THREE.LinearFilter;
-        texture.needsUpdate = true;
-        texture.mipmaps = chessboard;
-        texture.generateMipmaps = true;
-        var material = await new THREE.MeshBasicMaterial({map: texture, side: THREE.DoubleSide});
-        return material;
-    } else if (ts === 'none') { 
+    // if (ts === 'reference') {
+    //     let texture = await new THREE.TextureLoader().load( chessboard_images[0] );
+    //     texture.wrapS = THREE.RepeatWrapping;
+    //     texture.wrapT = THREE.RepeatWrapping;
+    //     texture.offset.set(0, 0);
+    //     texture.repeat.set(2, 2);
+    //     // texture.minFilter = THREE.NearestMipmapNearestFilter;
+    //     texture.minFilter = THREE.NearestFilter;
+    //     texture.magFilter = THREE.LinearFilter;
+    //     texture.needsUpdate = true;
+    //     texture.mipmaps = chessboard;
+    //     texture.generateMipmaps = true;
+    //     var material = await new THREE.MeshBasicMaterial({map: texture, side: THREE.DoubleSide});
+    //     return material;
+    // } else 
+    if (ts === 'none') { 
         var material = await new THREE.MeshLambertMaterial({color: 0x4400ff});
         return material;
     }
